@@ -1,0 +1,4 @@
+psMonitor/.env
+tests/.env_test
+psMonitor_venv/*
+bin/*
