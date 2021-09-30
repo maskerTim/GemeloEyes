@@ -6,7 +6,7 @@ import os
 from logger.logger import Logger
 logger = Logger.instance()
 
-class CPUMemTemplate(psMonitorTemplate):
+class CPUMemWithInfluxDB(psMonitorTemplate):
     """ Monitor CPU and Mem """
     def __init__(self, pids, interval=0.5) -> None:
         super().__init__(pids)
@@ -34,10 +34,10 @@ class CPUMemTemplate(psMonitorTemplate):
 
     def connectToDB(self):
         """ connect to influxDB """
-        DB_HOST = os.getenv('InfluxDB_HOST')
-        DB_PORT = int(os.getenv('InfluxDB_PORT'))
-        DB_USER = os.getenv('InfluxDB_USER')
-        DB_PASSWORD = os.getenv('InfluxDB_PASSWORD')
+        DB_HOST = os.getenv('DB_HOST')
+        DB_PORT = int(os.getenv('DB_PORT'))
+        DB_USER = os.getenv('DB_USER')
+        DB_PASSWORD = os.getenv('DB_PASSWORD')
         DB_NAME = 'CPUMem'
 
         self._DBclient = InfluxDBClient(DB_HOST, DB_PORT, DB_USER, DB_PASSWORD)
@@ -54,3 +54,9 @@ class CPUMemTemplate(psMonitorTemplate):
             logger.info('Write the datas successfully')
         else:
             logger.error('Fail to write into DB')
+
+    def connectToNetwork(self):
+        return super().connectToNetwork()
+
+    def writeToNetwork(self):
+        return super().writeToNetwork()
