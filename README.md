@@ -1,12 +1,14 @@
 # psMonitor
 The project for process performance monitor. Currently that's only CPU and Memory monitor for sample.
+> In the future it will be modified the name-- **GemeloEyes**
 
 ## Prerequisite
 In this project that used:
 * Docker 20.10.8
 * Python 3.7.0+
 
-## Setup
+## Getting Started
+### Setup
 * `.env` file:
     ```
     DB_HOST=[The host name of DB]
@@ -20,14 +22,14 @@ In this project that used:
 * If you want to install docker in raspberry pi, please use the shell script in `docker` directory:
     * `bash docker-install.sh`
 
-## Start
+### Start
 * You want to run program by yourself. Please follow the steps:
     1. Go to the `docker` directory and run this command:
         * `docker-compose up -d`
     2. Go to the `psMonitor` directory and run the python program:
         * `python main.py`
 
-## Stop
+### Stop
 1. Go to the `docker` directory and run this command:
     `docker-compose down`
 2. You can use `ctrl+c` to terminate the process.
@@ -75,6 +77,16 @@ In this project that used:
     * Test that get system performance.
     * Test that writes data that monitored into database.
     * Test the whole monitor mechanism (code in template method) on running.  
+
+## Design Blueprint
+### System Design
+The system design of psMonitor:
+![GemeloEyes](./docs/GemeloEyes-System-Design.png)
+
+### Code Design
+The code design of psMonitor:
+![GemeloEyes](./docs/GemeloEyes-Program-Design.png)
+
 
 ## Contribution
 * Hao-Ying Cheng (MaskerTim)
