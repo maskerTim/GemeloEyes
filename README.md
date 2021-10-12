@@ -98,6 +98,22 @@ The code design of psMonitor:
 
 ![GemeloEyes](./docs/GemeloEyes-Program-Design.png)
 
+### File Structure
+```
+├── docker
+├── docs
+├── psMonitor
+│   ├── __pycache__
+│   ├── exceptions
+│   │   └── __pycache__
+│   ├── logger
+│   │   └── __pycache__
+│   └── templates
+│       ├── __pycache__
+│       ├── deviceMonitor
+│       └── processMonitor
+└── tests
+```
 
 ## Contribution
 * Hao-Ying Cheng (MaskerTim)
