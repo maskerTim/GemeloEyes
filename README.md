@@ -81,10 +81,12 @@ In this project that used:
 ## Design Blueprint
 ### System Design
 The system design of psMonitor:
+
 ![GemeloEyes](./docs/GemeloEyes-System-Design.png)
 
 ### Code Design
 The code design of psMonitor:
+
 ![GemeloEyes](./docs/GemeloEyes-Program-Design.png)
 
 
