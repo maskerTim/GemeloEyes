@@ -1,4 +1,6 @@
 psMonitor/.env
 tests/.env_test
 psMonitor_venv/*
+performance.db
+psMonitor.log
 bin/*
