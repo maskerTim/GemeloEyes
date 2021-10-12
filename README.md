@@ -1,7 +1,9 @@
 # psMonitor
 The project for performance monitor. Currently that's only CPU and Memory monitor for sample.
 > In the future it will be modified the name-- **GemeloEyes**
+
 > Now just only **DeviceMonitor** can run, then **ProcessMonitor** is still repaired.
+
 Understand what DeviceMonitor and ProcessMonitor are, please go to [Design Blueprint](#design-blueprint)
 
 ## Prerequisite
