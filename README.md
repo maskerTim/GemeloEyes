@@ -1,6 +1,8 @@
 # psMonitor
-The project for process performance monitor. Currently that's only CPU and Memory monitor for sample.
+The project for performance monitor. Currently that's only CPU and Memory monitor for sample.
 > In the future it will be modified the name-- **GemeloEyes**
+> Now just only **DeviceMonitor** can run, then **ProcessMonitor** is still repaired.
+Understand what DeviceMonitor and ProcessMonitor are, please go to [Design Blueprint](#design-blueprint)
 
 ## Prerequisite
 In this project that used:
@@ -11,6 +13,7 @@ In this project that used:
 ### Setup
 * `.env` file:
     ```
+    # some databases need to config
     DB_HOST=[The host name of DB]
     DB_PORT=[The port of DB]
     DB_USER=[The username of DB] (Optional)
@@ -25,7 +28,7 @@ In this project that used:
 ### Start
 * You want to run program by yourself. Please follow the steps:
     1. Go to the `docker` directory and run this command:
-        * `docker-compose up -d`
+        * `docker build -t sqlite3 -f sqlite_dockerfile .` to build sqlite dockerfile for operating sqlite database
     2. Go to the `psMonitor` directory and run the python program:
         * `python main.py`
 
@@ -61,12 +64,16 @@ In this project that used:
         * `ps = YourselfMonitorTemplate(args...)` is your monitor template. 
         * Just extends the `DeviceMonitor` in `psMonitor/templates/deviceMonitor` directory to implement the template the you want.
     2. Remember to put `monitor` method in loop.
-        * `ps.monitorThroughNetwork()` in `while loop` or `for loop`.
-        * you can use `time.sleep` to control the monitor frequency.
+        * `ps.monitor()` in `while loop` or `for loop`.
+        * you can use `time.sleep([secs])` to control the monitor frequency.
+
+### Support DBs
+* [sqlite](https://sqlite.org/index.html)
 
 ## Test
 * `.env_test` file:
     ```
+    # some databases need to config
     DB_HOST=[The host name of DB]
     DB_PORT=[The port of DB]
     DB_USER=[The username of DB]
