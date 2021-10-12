@@ -35,9 +35,7 @@ In this project that used:
         * `python main.py`
 
 ### Stop
-1. Go to the `docker` directory and run this command:
-    `docker-compose down`
-2. You can use `ctrl+c` to terminate the process.
+1. You can use `ctrl+c` to terminate the process.
 
 ## Code Template for custom
 * The code constructs by template pattern:
