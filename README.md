@@ -6,6 +6,11 @@ The project for performance monitor. Currently that's only CPU and Memory monito
 
 Understand what DeviceMonitor and ProcessMonitor are, please go to [Design Blueprint](#design-blueprint)
 
+Lastest Update: 2021-10-25
+
+## !!Notice
+Flask controller services are some problems...
+
 ## Prerequisite
 In this project that used:
 * Docker 20.10.8
@@ -59,16 +64,42 @@ In this project that used:
         while True:
             cpuAndMemDM.monitor()
     ```
+* The code is for flask services
+    ```python
+    app = Flask(__name__)
+    app.register_blueprint(paramModule)
+
+    def running_server():
+        logger.info('server is running...')
+        app.run(host="0.0.0.0", port=3000)
+
+    @app.route('/', methods=['GET'])
+    def hello_world():
+        """
+        Testing the web server is running
+        :return: message of running web server
+        """
+        return "Web server is running"
+    ```
+    * Using the thread to avoid blocking, you don't modify it.
+        `threading.Thread(target=running_server, daemon=True).start()`
+    * If you want to change your monitor parameter for each agent, please register your agent:
+        `MonitorAgents.registerSingle(([string: name], [template: yourTemplateAgent]))`
 * Step of writing code:
     1. Use the monitor template, you can design what the template of monitor you want by yourself
         * `ps = YourselfMonitorTemplate(args...)` is your monitor template. 
         * Just extends the `DeviceMonitor` in `psMonitor/templates/deviceMonitor` directory to implement the template the you want.
     2. Remember to put `monitor` method in loop.
         * `ps.monitor()` in `while loop` or `for loop`.
-        * you can use `time.sleep([secs])` to control the monitor frequency.
+        * You can use `time.sleep([secs])` to control the monitor frequency.
+        * You can take `threading` package to implement multiple agents running.
 
-### Support DBs
+### Support Third-Parties
+#### Database
 * [sqlite](https://sqlite.org/index.html)
+#### Network Protocol
+* [mqtt](https://mosquitto.org/)
+
 
 ## Test
 * `.env_test` file:
@@ -84,9 +115,13 @@ In this project that used:
     * Test that get system performance.
     * Test that writes data that monitored into database.
     * Test the whole monitor mechanism (code in template method) on running.  
+* If you would like to test MQTT, please goto `docker` directory and run this command:
+    `bash mqtt_docker.sh`
 
 ## Design Blueprint
 ### System Design
+> Later will modify the system and code design
+
 The system design of psMonitor:
 
 ![GemeloEyes](./docs/GemeloEyes-System-Design.png)
@@ -97,6 +132,8 @@ The code design of psMonitor:
 ![GemeloEyes](./docs/GemeloEyes-Program-Design.png)
 
 ### File Structure
+> Later will modifiy file structure
+
 ```
 ├── docker
 ├── docs

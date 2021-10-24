@@ -1,10 +1,12 @@
 import abc
+from exceptions.ConnectionError import ConnectionError
 
 class template(abc.ABC):
     """ template for performance monitor """
     def __init__(self):
         super().__init__()
         self._perf = [] # performance data
+        self._handler = None
         self._connected = False # the flag that checks the connection is successful or not
 
     @abc.abstractmethod
@@ -39,7 +41,9 @@ class template(abc.ABC):
         """ monitor system performance """
         self._getPerformance()
         if not self._isConnected():
-            self._connectTo()
+            result = self._connectTo()
+            if not result:
+                raise ConnectionError('connection occurs error...')
             self._connected = True
         self._writeTo()
         self._clear()

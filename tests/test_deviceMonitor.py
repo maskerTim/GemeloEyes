@@ -1,21 +1,19 @@
 import sys
 import os
 
-import psutil
 # add a search path for find psMonitor module
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'psMonitor'))
 print(sys.path)
 
 import unittest
-import psutil
 from psMonitor.templates.deviceMonitor.CPUandMemoryForDM import CPUandMemoryForDM
 from dotenv import load_dotenv
 import sqlite3
 
 # load the environment test
-dotenv_path = os.path.join(os.path.dirname(__file__),'.env_test')
-load_dotenv(dotenv_path=dotenv_path)
+# dotenv_path = os.path.join(os.path.dirname(__file__),'.env_test')
+# load_dotenv(dotenv_path=dotenv_path)
 
 class TestDeviceMonitor(unittest.TestCase):
     """ Device Monitor for monitoring CPU and memory """
