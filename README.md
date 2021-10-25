@@ -8,9 +8,6 @@ Understand what DeviceMonitor and ProcessMonitor are, please go to [Design Bluep
 
 Lastest Update: 2021-10-25
 
-## !!Notice
-Flask controller services are some problems...
-
 ## Prerequisite
 In this project that used:
 * Docker 20.10.8
@@ -115,8 +112,9 @@ In this project that used:
     * Test that get system performance.
     * Test that writes data that monitored into database.
     * Test the whole monitor mechanism (code in template method) on running.  
-* If you would like to test MQTT, please goto `docker` directory and run this command:
-    `bash mqtt_docker.sh`
+* If you would like to test MQTT, please goto `docker` directory and run this command to start mqtt broker: `bash mqtt_docker.sh`
+    * `mqtt_conf` is a directory for configuration of mosquitto, you could refer to its [official website](https://mosquitto.org/). Also, you could refer to [official docker hub](https://hub.docker.com/_/eclipse-mosquitto) for mosquitto of docker version.
+* If you would like to test it could run successfully, please test by `test_main.py` in `tests` directory. Just run `python3 tests/test_main.py`.
 
 ## Design Blueprint
 ### System Design
@@ -132,23 +130,28 @@ The code design of psMonitor:
 ![GemeloEyes](./docs/GemeloEyes-Program-Design.png)
 
 ### File Structure
-> Later will modifiy file structure
-
 ```
 ├── docker
+│   └── mqtt_conf
+│       ├── mosquitto_data
+│       └── mosquitto_log
 ├── docs
 ├── psMonitor
-│   ├── __pycache__
-│   ├── exceptions
-│   │   └── __pycache__
-│   ├── logger
-│   │   └── __pycache__
-│   └── templates
-│       ├── __pycache__
-│       ├── deviceMonitor
-│       └── processMonitor
+│   ├── controller
+│   ├── exceptions
+│   ├── factory
+│   │   ├── database
+│   │   └── network
+│   ├── logger
+│   └── templates
+│       ├── deviceMonitor
+│       └── processMonitor
 └── tests
+
 ```
+
+## Conclusion
+If any questions, please contact me by email or post a issue on github.
 
 ## Contribution
 * Hao-Ying Cheng (MaskerTim)

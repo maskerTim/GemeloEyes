@@ -7,6 +7,7 @@ from logger.logger import Logger
 logger = Logger.instance()
 
 class MonitorAgents():
+    """ Monitor Agent for the task monitoring the performance """
     _registerAgent = {}
 
     def __init__(self) -> None:
@@ -32,24 +33,21 @@ class MonitorAgents():
 
     @classmethod
     def searchAgent(cls, name):
+        """ search Agent that is registered """
         if name not in cls._registerAgent:
             return False
         return cls._registerAgent[name]
         
 
 
-@paramModule.route('/changeInterval/<string:name>/interval/<string:interval>', methods=['POST'])
+@paramModule.route('/changeInterval/<string:name>/interval/<float:interval>', methods=['POST'])
 def changeInterval(name, interval):
     """ set interval parameter of some monitor agent """
     # search agent exists or not
     agent = MonitorAgents.searchAgent(name)
     # if yes, set interval
     if agent:
-        agent.setInterval(float(interval))
+        agent.setInterval(interval)
     else:
         return "Fail to search agent..."
     return "Successful to set interval of agent..."
-
-@paramModule.route('/test', methods=['GET'])
-def test():
-    return "hello world"

@@ -31,7 +31,7 @@ class NWMQTT(NWSample):
                 raise NotSetParamError("not set topic parameter...")
         try:
             self._nwHandler.publish(self._topic, json.dumps(performance))
-            logger.info('message is successfully published...')
+            # logger.info('message is successfully published...')
         except Exception:
             logger.error("mqtt writting occurs error...")
             return False

@@ -20,6 +20,7 @@ app = Flask(__name__)
 app.register_blueprint(paramModule)
 
 def running_server():
+    """ run flask server on 3000 port """
     logger.info('server is running...')
     app.run(host="0.0.0.0", port=3000)
 
@@ -36,9 +37,10 @@ if __name__=='__main__':
     # run flask server for listening
     threading.Thread(target=running_server, daemon=True).start()
 
-    """ Monitor and write into Database """
+    # load environment variable from .env file
     load_dotenv()
     logger.info('Load environment variables successfully.')
+    """ Monitor and write into Database """
     # dbHandler = DBFactory.createInstance('sqlite3', dbName='performance.db')
     # cpuAndMemDM = CPUandMemoryForDM(handler=dbHandler)
     # while True:

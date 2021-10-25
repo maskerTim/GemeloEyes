@@ -6,12 +6,12 @@ logger = Logger.instance()
 class DBSqlite3(DBSample):
     """ Database Sqlite3 handler """
 
-    def __init__(self, dbName) -> None:
-        super().__init__(dbName)
+    def __init__(self, host) -> None:
+        super().__init__(host)
 
     def _connectTo(self):
         try:
-            self._dbHandler = sqlite3.connect(self._dbName)
+            self._dbHandler = sqlite3.connect(self._host)
             logger.info('sqlite connection succeeds')
             # check the table exists or not, if not, create a table
             cursor = self._dbHandler.execute(''' SELECT count(name) FROM sqlite_master WHERE type='table' AND name='device_performance' ''')
@@ -45,7 +45,7 @@ class DBSqlite3(DBSample):
                 performance[0]['memory_percent'],
                 performance[0]['recorded_time']])
             self._dbHandler.commit()
-            logger.info('write into DB successfully')
+            # logger.info('write into DB successfully')
         except Exception as e:
             logger.error('writing DB occurs some error', e)
             return False

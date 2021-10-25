@@ -17,7 +17,7 @@ class TestDBFactory(unittest.TestCase):
 
     def setUp(self) -> None:
         """ this setUp() method called once per tests too """
-        self.testDB = DBFactory.createInstance('sqlite3', dbName='performance.db')
+        self.testDB = DBFactory.createInstance('sqlite3', host='performance.db')
         self._deviceMonitor = CPUandMemoryForDM(handler=self.testDB)
 
     def test_connectToDB(self):

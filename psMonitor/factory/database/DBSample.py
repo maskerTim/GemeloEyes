@@ -4,12 +4,13 @@ from exceptions.NotSetParamError import NotSetParamError
 class DBSample(abc.ABC):
     """ Sample implementation of Database """
 
-    def __init__(self, dbName) -> None:
+    def __init__(self, host) -> None:
         super().__init__()
-        if not dbName:
+        if not host:
             raise NotSetParamError('Not set the dbname parameter...')
         else:
-            self._dbName = dbName
+            self._host = host
+        self._dbName = None
         self._dbHandler = None
 
     def setDBName(self, dbName):

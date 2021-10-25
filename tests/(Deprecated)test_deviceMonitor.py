@@ -1,3 +1,7 @@
+"""
+@Deprecated: The test is deprecated, please turn to test_main.py
+"""
+
 import sys
 import os
 
