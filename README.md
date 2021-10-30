@@ -87,7 +87,7 @@ In this project that used:
         `threading.Thread(target=running_server, daemon=True).start()`
     * If you want to change your monitor parameter for each agent, please register your agent:
         `MonitorAgents.registerSingle(([string: name], [template: yourTemplateAgent]))`
-* Control the parameters of a monitor agent, please using `Postman` to post your request by service url.
+* Control the parameters of a monitor agent, please using [Postman](#postman) to post your request by service url.
     * For instance, control the interval of monitor, please post this url: `http://[your agent ip]:[the service port]/changeInterval/[your agent name]/interval/[the interval seconds]`
     * If want to know other services, please go to `psMonitor/controller` directory. There are lots of service provided by Flask web server. 
 * Step of writing code:
@@ -103,7 +103,10 @@ In this project that used:
 #### Database
 * [sqlite](https://sqlite.org/index.html)
 #### Network Protocol
-* [mqtt](https://mosquitto.org/)
+* [mosquitto](https://mosquitto.org/)
+#### Postman
+* [postman](https://www.postman.com/)
+    * Recommend to download desktop version for local development
 
 
 ## Test
