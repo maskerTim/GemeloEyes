@@ -42,12 +42,26 @@ class MonitorAgents():
 
 @paramModule.route('/changeInterval/<string:name>/interval/<float:interval>', methods=['POST'])
 def changeInterval(name, interval):
-    """ set interval parameter of some monitor agent """
+    """ set interval parameter of monitor agent """
     # search agent exists or not
     agent = MonitorAgents.searchAgent(name)
-    # if yes, set interval
+    # if exists, set interval
     if agent:
         agent.setInterval(interval)
     else:
         return "Fail to search agent..."
     return "Successful to set interval of agent..."
+
+@paramModule.route('/changeQoS/<string:name>/QoS/<int:qos>', methods=['POST'])
+def changeQoS(name, qos):
+    """ set qos parameter of monitor agent """
+    if qos > 2 or qos < 0:
+        return "Qos just allows 0~2. Your QoS isn't in the range."
+    # search agent exists or not
+    agent = MonitorAgents.searchAgent(name)
+    # if exists, set QoS
+    if agent:
+        agent.setQoS(qos)
+    else:
+        return "Fail to search agent..."
+    return "Successful to set QoS of agent..."

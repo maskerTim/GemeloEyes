@@ -46,7 +46,7 @@ if __name__=='__main__':
     # while True:
     #     cpuAndMemDM.monitor()
     """ Monitor and send outside through network """
-    nwHandler = NWFactory.createInstance('mqtt', host=("192.168.0.199", 1883))
+    nwHandler = NWFactory.createInstance('mqtt', host=("192.168.100.128", 1883))
     nwHandler.setTopic("Try/Test")
     cpuAndMemDM = CPUandMemoryForDM(handler=nwHandler)
 

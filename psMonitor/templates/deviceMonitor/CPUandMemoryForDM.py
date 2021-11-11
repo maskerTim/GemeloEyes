@@ -6,14 +6,19 @@ logger = Logger.instance()
 
 class CPUandMemoryForDM(template):
     """ Device Monitor for monitoring CPU and memory """
-    def __init__(self, interval=0.5, handler=None):
+    def __init__(self, interval=0.5, handler=None, qos=0):
         super().__init__()
         self._interval = interval
         self._handler = handler
+        self._qos = qos
 
     def setInterval(self, interval):
         """ set interval """
         self._interval = interval
+
+    def setQoS(self, qos):
+        """ set QoS level for publisher """
+        self._qos = qos
 
     def _getPerformance(self):
         self._perf.append({
@@ -35,7 +40,7 @@ class CPUandMemoryForDM(template):
         return self._handler._connectTo()
 
     def _writeTo(self):
-        return self._handler._writeTo(self._perf)
+        return self._handler._writeTo(self._perf, self._qos)
 
     def _close(self):
         try:

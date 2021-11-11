@@ -26,11 +26,12 @@ class NWMQTT(NWSample):
             return False
         return True
 
-    def _writeTo(self, performance):
+    def _writeTo(self, performance, qos):
         if not self._topic:
                 raise NotSetParamError("not set topic parameter...")
         try:
-            self._nwHandler.publish(self._topic, json.dumps(performance))
+            logger.info('qos is {}'.format(qos))
+            self._nwHandler.publish(self._topic, json.dumps(performance), qos)
             # logger.info('message is successfully published...')
         except Exception:
             logger.error("mqtt writting occurs error...")
