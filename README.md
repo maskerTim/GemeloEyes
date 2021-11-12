@@ -5,7 +5,7 @@ The project for performance monitor. Currently that's only CPU and Memory monito
 
 Understand what DeviceMonitor and ProcessMonitor are, please go to [Design Blueprint](#design-blueprint)
 
-Lastest Update: 2021-10-31
+Lastest Update: 2021-11-12
 
 ## Prerequisite
 In this project that used:
@@ -122,16 +122,14 @@ In this project that used:
 
 ## Design Blueprint
 ### System Design
-> Later will modify the system and code design
-
 The system design of psMonitor:
 
-![GemeloEyes](./docs/GemeloEyes-System-Design.png)
+![GemeloEyes](./docs/GemeloEyes-System-Diagram.png)
 
 ### Code Design
 The code design of psMonitor:
 
-![GemeloEyes](./docs/GemeloEyes-Program-Design.png)
+![GemeloEyes](./docs/GemeloEyes-Class-Diagram.png)
 
 ### File Structure
 ```

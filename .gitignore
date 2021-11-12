@@ -1,7 +1,8 @@
 psMonitor/.env
 tests/.env_test
-psMonitor_venv/*
 performance.db
 psMonitor.log
 bin/*
 gemeloe_venv/*
+docker/mqtt_conf/mosquitto_data
+docker/mqtt_conf/mosquitto_log
